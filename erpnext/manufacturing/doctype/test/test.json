@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-09-09 11:45:06.022807",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_order",
+  "column_break_yjygy",
+  "production_plan",
+  "section_break_kot1t",
+  "show_report",
+  "table"
+ ],
+ "fields": [
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Table MultiSelect",
+   "label": "Sales Order",
+   "options": "Table Multi Select Sales Order"
+  },
+  {
+   "fieldname": "column_break_yjygy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "production_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Production Plan",
+   "options": "Production Plan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_kot1t",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "show_report",
+   "fieldtype": "Button",
+   "label": "Show Report"
+  },
+  {
+   "fieldname": "table",
+   "fieldtype": "Table",
+   "label": "Table",
+   "options": "Child MRP for Multi Assembly"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-09 11:45:38.657908",
+ "modified_by": "Administrator",
+ "module": "Manufacturing",
+ "name": "test",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

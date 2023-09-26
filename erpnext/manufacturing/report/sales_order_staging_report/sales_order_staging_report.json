@@ -1,0 +1,130 @@
+{
+ "add_total_row": 0,
+ "columns": [
+  {
+   "fieldname": "SalesOrderId",
+   "fieldtype": "Link",
+   "label": "Sales Order Id",
+   "options": "Sales Order",
+   "width": 0
+  },
+  {
+   "fieldname": "SalesOrderItemtoManufactureID",
+   "fieldtype": "Data",
+   "label": "Sales Order Item to Manufacture ID",
+   "width": 0
+  },
+  {
+   "fieldname": "SalesOrderItemtoManufactureName",
+   "fieldtype": "Data",
+   "label": "Sales Order Item to Manufacture Name",
+   "width": 0
+  },
+  {
+   "fieldname": "CustomerDeliveryDate",
+   "fieldtype": "Data",
+   "label": "Customer DeliveryDate",
+   "width": 0
+  },
+  {
+   "fieldname": "InternalDeliveryDate",
+   "fieldtype": "Data",
+   "label": "Internal DeliveryDate",
+   "width": 0
+  },
+  {
+   "fieldname": "ProductionPlanStatus",
+   "fieldtype": "Data",
+   "label": "Production Plan Status",
+   "width": 0
+  },
+  {
+   "fieldname": "ProductionPlanID",
+   "fieldtype": "Data",
+   "label": "ProductionPlan ID",
+   "width": 0
+  },
+  {
+   "fieldname": "MaterialRequestStatus",
+   "fieldtype": "Data",
+   "label": "MaterialRequest Status",
+   "width": 0
+  },
+  {
+   "fieldname": "MaterialRequestID",
+   "fieldtype": "Data",
+   "label": "MaterialRequest ID",
+   "width": 0
+  },
+  {
+   "fieldname": "PurchaseOrderStatus",
+   "fieldtype": "Data",
+   "label": "PurchaseOrder Status",
+   "width": 0
+  },
+  {
+   "fieldname": "PurchaseOrderID",
+   "fieldtype": "Data",
+   "label": "PurchaseOrder ID",
+   "width": 0
+  },
+  {
+   "fieldname": "WorkOrderStatus",
+   "fieldtype": "Data",
+   "label": "WorkOrder Status",
+   "width": 0
+  },
+  {
+   "fieldname": "WorkOrderID",
+   "fieldtype": "Data",
+   "label": "WorkOrder ID",
+   "width": 0
+  },
+  {
+   "fieldname": "SalesOrderStatus",
+   "fieldtype": "Data",
+   "label": "SalesOrder Status",
+   "width": 0
+  },
+  {
+   "fieldname": "DeliveryStatus",
+   "fieldtype": "Data",
+   "label": "Delivery Status",
+   "width": 0
+  },
+  {
+   "fieldname": "BillingStatus",
+   "fieldtype": "Data",
+   "label": "Billing Status",
+   "width": 0
+  }
+ ],
+ "creation": "2023-05-15 11:15:57.662920",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Autotechnix",
+ "modified": "2023-05-15 11:32:45.976550",
+ "modified_by": "Administrator",
+ "module": "Manufacturing",
+ "name": "Sales Order Staging Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select distinct\ntabSalesOrder.name 'SalesOrderId' , \ntabSalesOrderItem.item_code 'SalesOrderItemtoManufactureID', tabSalesOrderItem.item_name 'SalesOrderItemtoManufactureName',\ntabSalesOrderItem.delivery_date 'CustomerDeliveryDate', tabSalesOrderItem.our_delivery_date 'InternalDeliveryDate', \ntabProductionPlan.status 'ProductionPlanStatus',\ntabProductionPlan.name 'ProductionPlanID',\ntabMaterialRequest.status 'MaterialRequestStatus',\ntabMaterialRequest.name 'MaterialRequestID', \ntabPurchaseOrder.status 'PurchaseOrderStatus',\ntabPurchaseOrder.name 'PurchaseOrderID', \ntabWorkOrder.status 'WorkOrderStatus',\ntabWorkOrder.name 'WorkOrderID', \ntabSalesOrder.status 'SalesOrderStatus',\ntabSalesOrder.delivery_status 'DeliveryStatus',\ntabSalesOrder.billing_status 'BillingStatus'\n \n\n\n\n\nfrom  `tabSales Order` tabSalesOrder\nleft outer join `tabProduction Plan Sales Order` tabProductionPlanSalesOrder on tabProductionPlanSalesOrder.sales_order = tabSalesOrder.name\nleft outer join `tabProduction Plan` tabProductionPlan on tabProductionPlan.name = tabProductionPlanSalesOrder.parent\n\nleft outer join `tabProduction Plan Item` tabProductionPlanItem on tabProductionPlanItem.parent = tabProductionPlan.name\nleft outer join `tabMaterial Request Plan Item`  tabMaterialRequestPlanItem on tabMaterialRequestPlanItem.parent = tabProductionPlan.name\nleft outer join `tabSales Order Item` tabSalesOrderItem on tabSalesOrderItem.name = tabProductionPlanItem.sales_order_item\n\nleft outer join `tabMaterial Request Item` tabMaterialRequestItem \n    on tabMaterialRequestItem.production_plan = tabProductionPlan.name \n    and tabMaterialRequestItem.material_request_plan_item = tabMaterialRequestPlanItem.name\n\nleft outer join `tabMaterial Request` tabMaterialRequest on tabMaterialRequest.name = tabMaterialRequestItem.parent\n\nleft outer join `tabPurchase Order Item` tabPurchaseOrderItem on tabPurchaseOrderItem.material_request_item = tabMaterialRequestItem.name\nleft outer join `tabPurchase Order` tabPurchaseOrder on tabPurchaseOrder.name = tabPurchaseOrderItem.parent\n\nleft outer join `tabWork Order` tabWorkOrder on tabWorkOrder.sales_order = tabSalesOrder.name\nwhere tabSalesOrder.name in %(sales_order)s",
+ "ref_doctype": "Work Order",
+ "report_name": "Sales Order Staging Report",
+ "report_script": "",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "Manufacturing User"
+  },
+  {
+   "role": "Stock User"
+  }
+ ]
+}
